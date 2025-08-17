@@ -10,7 +10,7 @@ bool isPowerLightOn();
 bool isPowerPlugged();
 
 int main() {
-    cout << "System Check..." << endl;
+    cout << "System Check" << endl;
     process();
     cout << "END" << endl;
     return 0;
@@ -19,7 +19,7 @@ int main() {
 void process() {
     if (isComputerOn()) {
         if (hasErrorMessage()) {
-            cout << "Diagnosis..." << endl;
+            cout << "Diagnosis" << endl;
         } else {
             cout << "Good Condition" << endl;
         }
