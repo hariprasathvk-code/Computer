@@ -2,61 +2,56 @@
 using namespace std;
 
 void process();
-void powerLightOn();
-
-bool isComputerOn();
-bool hasErrorMessage();
-bool isPowerLightOn();
-bool isPowerPlugged();
+int powerLightOn();
 
 int main() {
-    cout << "System Check" << endl;
+    cout << "Check..." << endl;
     process();
     cout << "END" << endl;
     return 0;
 }
 
 void process() {
-    if (isComputerOn()) {
-        if (hasErrorMessage()) {
-            cout << "Diagnosis" << endl;
+    while (true) {
+        char c;
+        cout << "Computer ON? (y/n): ";
+        cin >> c;
+
+        if (c == 'y' || c == 'Y') {
+            cout << "Error Message? (y/n): ";
+            cin >> c;
+            if (c == 'y' || c == 'Y') {
+                cout << "Diagnosis" << endl;
+                continue;
+            } else {
+                cout << "Good Condition" << endl;
+                return;
+            }
         } else {
-            cout << "Good Condition" << endl;
+            int r = powerLightOn();
+            if (r == 1) continue;
+            else return;
         }
-    } else {
-        powerLightOn();
     }
 }
 
-void powerLightOn() {
-    if (isPowerLightOn()) {
-        cout << "Call Specialist" << endl;
+int powerLightOn() {
+    char c;
+    cout << "Power Light ON? (y/n): ";
+    cin >> c;
+
+    if (c == 'y' || c == 'Y') {
+        cout << "Find Specialist" << endl;
+        return 0;
     } else {
-        if (isPowerPlugged()) {
-            process();
+        cout << "Power Plugged to wall? (y/n): ";
+        cin >> c;
+        if (c == 'y' || c == 'Y') {
+            cout << "Find Specialist" << endl;
+            return 0;
         } else {
-            cout << "Plugged In" << endl;
-            process();
+            cout << "Plug Power, retry" << endl;
+            return 1;
         }
     }
-}
-
-bool isComputerOn() {
-    char c; cout << "Computer ON? (y/n): "; cin >> c;
-    return (c == 'y' || c == 'Y');
-}
-
-bool hasErrorMessage() {
-    char c; cout << "Error Message? (y/n): "; cin >> c;
-    return (c == 'y' || c == 'Y');
-}
-
-bool isPowerLightOn() {
-    char c; cout << "Power Light ON? (y/n): "; cin >> c;
-    return (c == 'y' || c == 'Y');
-}
-
-bool isPowerPlugged() {
-    char c; cout << "Power Plugged? (y/n): "; cin >> c;
-    return (c == 'y' || c == 'Y');
 }
